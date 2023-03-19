@@ -1,16 +1,15 @@
 {
-  "name": "vite-react-tailwind-vitest",
+  "name": "read-hot-book-pursiut",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "server/server.js",
   "scripts": {
-    "build": "vite build",
-    "dep-graph": "depcruise --exclude \"^node_modules\" --output-type dot src | dot -T svg > dependency-graph.svg",
-    "preview": "vite preview",
-    "start": "vite",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "start": "cd client && vite",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && vite\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && vite build && cd ../server && npm run build",
+    "dep-graph": "depcruise --exclude \"^node_modules\" --output-type dot src | dot -T svg > dependency-graph.svg"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -46,6 +45,7 @@
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
-    "vitest": "^0.29.1"
+    "vitest": "^0.29.1",
+    "concurrently": "^5.1.0"
   }
 }

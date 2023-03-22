@@ -1,73 +1,84 @@
-# React-Tailwind-Vitest
+# HW-21 MERN Challenge: Book Search Engine
 
-This is a template for a React project using TailwindCSS and Vite/Vitest. It also includes `require('@tailwindcss/forms')` in the `tailwind.config.js` file.
+Deployed [Here](https://book-search-challenge-21-mern.herokuapp.com/)
 
-## Scripts
+![Website](https://github.com/luksvrd/luksvrd-Portfolio/blob/main/book.png)
 
-- `npm start` - Starts the development server.
-- `npm test` - Runs the test suite with [Vitest](https://vitest.dev/guide/cli.html#commands). React Testing Library is included along with `@testing-library/user-event`.
+## Built Using
 
-See [package.json](./package.json) for more scripts
+MERN stack, React, MongoDB, Node.js, Express.js, GraphQL API, Apollo Server, Google Books API, JavaScript, HTML, CSS, Bootstrap, Heroku, Vite, NPM, Git, GitHub, VS Code
 
-## Linting and Prettier
+## Table of Contents
 
-This project uses `"standard"` linting with the recommended for `react` and `"prettier"`. This includes recommendations for **rules of hooks** and **a11y.**
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Questions](#questions)
+- [Contributing](#contributing)
+- [License](#license)
 
-It also includes warnings regarding [encapsulating React hooks](https://www.npmjs.com/package/eslint-plugin-use-encapsulation).
+### \* [Description](#description)
 
-It also lints `"testing-library"` and `"jest-dom"`.
+The Book search engine is an application is leveraging the entire MERN stack and with a React front end, MongoDB database, and Node.js/Express.js server and API. It's set up to allow users to save book searches to the back end. The application is built using Google Books API search engine build with GraphQL API and Apollo Server.
 
-## VS Code Extensions and Settings
+This project was bootstrapped with Create React App.
 
-It also includes sensible VS Code defaults for [settings](./.vscode/settings.json) and [extensions](./.vscode/extensions.json).
+```
+User Story:
+AS AN employer looking for candidates with experience building single-page applications
+I WANT to view a potential employee's deployed React portfolio of work samples
+SO THAT I can assess whether they're a good candidate for an open position
 
-For the **settings**, we are doing things like:
+Acceptance Criteria:GIVEN a single-page application portfolio for a web developer
+WHEN I load the portfolio
+THEN I am presented with a page containing a header, a section for content, and a footer
+WHEN I view the header
+THEN I am presented with the developer's name and navigation with titles corresponding to different sections of the portfolio
+WHEN I view the navigation titles
+THEN I am presented with the titles About Me, Portfolio, Contact, and Resume, and the title corresponding to the current section is highlighted
+WHEN I click on a navigation title
+THEN I am presented with the corresponding section below the navigation without the page reloading and that title is highlighted
+WHEN I load the portfolio the first time
+THEN the About Me title and section are selected by default
+WHEN I am presented with the About Me section
+THEN I see a recent photo or avatar of the developer and a short bio about them
+WHEN I am presented with the Portfolio section
+THEN I see titled images of six of the developer’s applications with links to both the deployed applications and the corresponding GitHub repository
+WHEN I am presented with the Contact section
+THEN I see a contact form with fields for a name, an email address, and a message
+WHEN I move my cursor out of one of the form fields without entering text
+THEN I receive a notification that this field is required
+WHEN I enter text into the email address field
+THEN I receive a notification if I have entered an invalid email address
+WHEN I am presented with the Resume section
+THEN I see a link to a downloadable resume and a list of the developer’s proficiencies
+WHEN I view the footer
+THEN I am presented with text or icon links to the developer’s GitHub and LinkedIn profiles, and their profile on a third platform (Stack Overflow, Twitter)
 
-- `"css.validate": false,` - TailwindCSS uses a lot of custom CSS syntax that VS Code doesn't understand, so we disable validation.
-- `"editor.formatOnSave": true,` - We want to format our code on save.
-- `"editor.defaultFormatter": "esbenp.prettier-vscode",` - We want to use Prettier to format our code.
-- `"editor.codeActionsOnSave": { "source.fixAll.eslint": true },` - We want to use ESLint to fix any linting errors on save.
+```
 
-You should install the recommended extensions when you open the project in VS Code to get the full benefit of these settings.
-.
+### \* [Installation](#installation)
 
-## Architecture
+This application assumes you have a 'complete dev environment' setup - a terminal, Node, & VS Code. To get started, Fork the repository and inside your terminal, run `git clone` to clone the new repo, then `cd` into it and execute `npm i` from the root directory to install all the dependancies.
 
-This project uses the following architecture heavily inspired by Tania Rascia's [React Architecture](https://www.taniarascia.com/react-architecture-directory-structure/).
+### \* [Usage](#usage)
 
-- `src/` - All of our source code.
-  - `components/` - All of our React components (`.jsx`). Global shared/reusable components, such as layout (wrappers, navigation), form components, buttons.
-  - `layouts/` - These are components that are meant to wrap other smaller components as part of a **route**. They will usually receive `children`, or might just be `header`, `footer`, `main`, etc.
-  - `hooks/` - All of our custom React hooks (`.js`).
-  - `routes/` - All of our React routes (`.jsx`). Each route is a 'page'.
-  - `services/` - All of our services (`.js`). Services are responsible for making API calls and returning data, for example (api.js). Or, maybe you have a service that is responsible for managing authentication (auth.js). Or, `localStorage` (storage.js). The stuff in here has consequences, that is, **side effects**.
-  - `tests/` - All of our tests (`.test.jsx`).
-  - `utils/` - All of our utility functions (`.js`). Utilities, helpers, constants, and the like. Unlike `services`, these are not responsible for side effects.
+Once you have installed all dependancies, you can execute the commands below to run the server & built the application through Vite.
 
-### Absolute Imports
+- All of the necessary scripts will run from the root directory `package.json`.
 
-This project uses absolute imports for all of our files. This means that we can import files from any directory using the `@` prefix instead of relative paths (e.g. `import Button from '@/components/Button'` instead of `import Button from '../../components/Button'`).
+- `npm run build` in the command line to run the build script.
 
-This works for any of the directories in `src/` as listed above. If you need to add more, see [`vite.config.js`](./vite.config.js).
+- `npm run develop` in the command line to start the server and client concurrently.
 
-### Dependency Graph
+### \* [Questions](#questions)
 
-`npm run dep-graph`
+If you have any questions about the repo, open an issue at https://github.com/luksvrd/crispy-social-phone. You can also find more of my work on [Github](https://github.com/luksvrd)
 
-This project includes `"dependency-cruiser"`. You can generate a dependency graph by running `npm run dep-graph`. This will be in SVG format by default. You can change this in the `package.json` file.
+### \* [Contributing](#contributing)
 
-**Note:** You **must** have [Graphviz](https://graphviz.org/download/) installed for this to work. You can install it using [Homebrew](https://brew.sh/) on macOS with `brew install graphviz`.
+Contributors: Lukas Virden
 
-Here's an example of what the dependency graph looks like:
-
-![Dependency Graph](./dependency-graph.svg)
-
-## License
+### \* [License](#license)
 
 [MIT](./LICENSE)
-
-## Credits
-
-This project was bootstrapped with [create-vite](https://vitejs.dev/guide/).
-
-Like it? Give it a ⭐️ on [GitHub](https://github.com/manavm1990/vite-react-tailwind-vitest).

@@ -2,7 +2,7 @@
 
 Deployed [Here](https://book-search-challenge-21-mern.herokuapp.com/)
 
-![Website](https://github.com/luksvrd/luksvrd-Portfolio/blob/main/book.png)
+![Website](https://github.com/luksvrd/read-hot-book-pursuit/blob/main/book.png)
 
 ## Built Using
 

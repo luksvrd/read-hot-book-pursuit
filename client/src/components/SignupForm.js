@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import { useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutations";
 
 const SignupForm = () => {
@@ -16,8 +16,8 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-
-  const { addUser } = useMutation(ADD_USER);
+  // define mutation for adding a user
+  const [createUser] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,9 +35,10 @@ const SignupForm = () => {
     }
 
     try {
-      const { data } = await addUser({
+      const { data } = await createUser({
         variables: { ...userFormData },
       });
+
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -65,7 +66,7 @@ const SignupForm = () => {
           Something went wrong with your signup!
         </Alert>
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
             type="text"
@@ -80,7 +81,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="email"
@@ -95,7 +96,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"

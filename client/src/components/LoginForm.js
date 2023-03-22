@@ -1,17 +1,16 @@
 // see SignupForm.js for comments
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
-import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
+import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
-  const [login] = useMutation(LOGIN_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,9 +28,10 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = await login({
+      const { data } = await loginUser({
         variables: { ...userFormData },
       });
+
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
@@ -56,7 +56,7 @@ const LoginForm = () => {
         >
           Something went wrong with your login credentials!
         </Alert>
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="text"
@@ -71,7 +71,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"

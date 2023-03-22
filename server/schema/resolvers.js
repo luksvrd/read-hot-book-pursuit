@@ -18,28 +18,31 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (_, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return { token, user };
-    },
-    login: async (_, { email, password }) => {
+    login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError("No user with this email found!");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError("Incorrect password!");
       }
 
       const token = signToken(user);
+      console.log("logged in");
       return { token, user };
     },
+
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
     saveBook: async (_, { bookData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
@@ -53,6 +56,7 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+
     removeBook: async (_, { bookId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

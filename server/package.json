@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "node server.js"
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,14 +19,6 @@
     "mongoose": "^5.9.10"
   },
   "devDependencies": {
-    "@graphql-eslint/eslint-plugin": "^3.16.1",
-    "eslint": "^8.36.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.6.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "nodemon": "^2.0.3",
-    "prettier": "2.8.4"
+    "nodemon": "^2.0.3"
   }
 }
